@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Play — tassiost portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --bg-bar: #131a2a;
+      --border: #243049;
+      --text: #e6ecf5;
+      --text-dim: #94a3c5;
+      --accent: #7dd3fc;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .bar {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: var(--bg-bar);
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .bar .left { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .bar .left strong { white-space: nowrap; }
+    .bar .right { display: flex; align-items: center; gap: 14px; }
+    .bar .dim { color: var(--text-dim); }
+    .frame-wrap {
+      flex: 1 1 auto;
+      position: relative;
+      background: #000;
+      min-height: 400px;
+    }
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .fallback {
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-dim);
+    }
+    .fallback h1 { color: var(--text); margin-bottom: 8px; }
+    .fallback a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #062338;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <div class="left">
+      <a href="./" aria-label="Back to portfolio">← Portfolio</a>
+      <strong id="title">Loading…</strong>
+      <span class="dim" id="note"></span>
+    </div>
+    <div class="right">
+      <a id="external" href="#" target="_blank" rel="noopener">Open on Unity Play ↗</a>
+    </div>
+  </div>
+  <div class="frame-wrap" id="wrap"></div>
+
+  <script>
+    // Whitelist of embeddable games. Adding here is the only way to embed —
+    // prevents this page being abused as an open redirector.
+    const GAMES = {
+      "tank-llm-arena": {
+        title: "Tank LLM Arena",
+        unity: "https://play.unity.com/en/games/3813d446-aa09-4b58-9c8a-2a9ffa345a31/tanks-mp",
+      },
+      "vocab": {
+        title: "Vocab / Lexi-Shift",
+        unity: "https://play.unity.com/en/games/c3554502-93ed-4ac0-8193-8d547e25131b/vocab",
+      },
+      "meshgen": {
+        title: "MeshGen",
+        unity: "https://play.unity.com/en/games/e2a49961-dc8e-4a40-8875-ed3dd6aa090e/webglbuild",
+      },
+    };
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get("id");
+    const game = id && GAMES[id];
+
+    const titleEl = document.getElementById("title");
+    const noteEl = document.getElementById("note");
+    const externalEl = document.getElementById("external");
+    const wrapEl = document.getElementById("wrap");
+
+    if (!game) {
+      titleEl.textContent = "Unknown game";
+      externalEl.style.display = "none";
+      wrapEl.innerHTML = `
+        <div class="fallback">
+          <h1>Game not found</h1>
+          <p>The id parameter didn't match any known game. Available: ${Object.keys(GAMES).join(", ")}.</p>
+          <a class="btn" href="./">← Back to portfolio</a>
+        </div>`;
+    } else {
+      document.title = game.title + " — tassiost portfolio";
+      titleEl.textContent = game.title;
+      noteEl.textContent = "(Unity Play embed; if it doesn't load, use Open on Unity Play ↗)";
+      externalEl.href = game.unity;
+      const iframe = document.createElement("iframe");
+      iframe.src = game.unity;
+      iframe.allow = "fullscreen; autoplay; gamepad; xr-spatial-tracking";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.title = game.title;
+      wrapEl.appendChild(iframe);
+    }
+  </script>
+</body>
+</html>
