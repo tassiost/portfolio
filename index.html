@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Playable Portfolio — tassiost</title>
+  <meta name="description" content="A small portfolio of educational games and AI-powered tools — homework into games, stories, factories, and roguelite spells." />
+  <meta property="og:title" content="Playable Portfolio — tassiost" />
+  <meta property="og:description" content="Homework into games, stories, factories, and roguelite spells. AI-powered learning experiments." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --bg-card: #131a2a;
+      --bg-card-hover: #1a2238;
+      --border: #243049;
+      --text: #e6ecf5;
+      --text-dim: #94a3c5;
+      --accent: #7dd3fc;
+      --accent-strong: #38bdf8;
+      --good: #4ade80;
+      --warn: #facc15;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-strong); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 48px);
+      letter-spacing: -0.02em;
+    }
+    header p {
+      margin: 0;
+      max-width: 720px;
+      color: var(--text-dim);
+      font-size: 18px;
+    }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .pill.live { background: rgba(74, 222, 128, 0.12); color: var(--good); border: 1px solid rgba(74, 222, 128, 0.3); }
+    .pill.soon { background: rgba(250, 204, 21, 0.12); color: var(--warn); border: 1px solid rgba(250, 204, 21, 0.3); }
+    .section { padding: 56px 0 16px; }
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.01em;
+    }
+    .section .lede { color: var(--text-dim); margin: 0 0 32px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: background 0.15s ease, transform 0.15s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { background: var(--bg-card-hover); transform: translateY(-2px); }
+    .card .icon { font-size: 28px; line-height: 1; margin-bottom: 14px; }
+    .card h3 { margin: 0 0 4px; font-size: 19px; }
+    .card .tag { color: var(--text-dim); font-size: 14px; margin: 0 0 12px; }
+    .card .desc { font-size: 15px; margin: 0 0 16px; flex: 1; }
+    .card .meta { color: var(--text-dim); font-size: 13px; margin: 0 0 16px; }
+    .card .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.15s ease;
+    }
+    .btn.primary { background: var(--accent); color: #062338; }
+    .btn.primary:hover { background: var(--accent-strong); color: #052236; }
+    .btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
+    footer {
+      margin-top: 80px;
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+    footer a { color: var(--text-dim); }
+    footer a:hover { color: var(--accent); }
+    .infra {
+      margin-top: 12px;
+      padding: 16px 18px;
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+    .infra strong { color: var(--text); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Playable Portfolio</h1>
+      <p>A small lab of educational and AI-powered games. Homework becomes stories, math becomes factories, vocabulary becomes spells, and natural-language strategy commands tanks and bots. Free-tier hosted, so cold starts can take ~30 seconds on first visit.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2>Playable now</h2>
+      <p class="lede">Click <em>Play</em> to open the live demo.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🎮</div>
+          <h3>CreateGames <span class="pill live">live</span></h3>
+          <p class="tag">Homework → playable browser games.</p>
+          <p class="desc">Paste or upload homework, and the generator (Gemini + Playwright QA) returns short custom games that practice the exact concepts on the worksheet.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://creategames.onrender.com" target="_blank" rel="noopener">▶ Play</a>
+            <a class="btn secondary" href="https://github.com/tassiost/creategames" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">📖</div>
+          <h3>Homework Story <span class="pill live">live</span></h3>
+          <p class="tag">Homework → kid-friendly stories &amp; quests.</p>
+          <p class="desc">Turns the same homework into illustrated stories, AI Story Quests, and visual learning modes. Hints, retries, and gentle feedback keep the original questions answerable in story context.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://homework-story.onrender.com" target="_blank" rel="noopener">▶ Play</a>
+            <a class="btn secondary" href="https://github.com/tassiost/homework-story" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🪄</div>
+          <h3>Learnoita <span class="pill live">live</span></h3>
+          <p class="tag">Noita-inspired educational roguelite.</p>
+          <p class="desc">Math expressions and vocabulary become spells. Build chained casts in a sandbox world; experimentation and cause-and-effect drive learning.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://learnoita.onrender.com" target="_blank" rel="noopener">▶ Play</a>
+            <a class="btn secondary" href="https://github.com/tassiost/learnoita" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🏭</div>
+          <h3>Learndustry <span class="pill live">live</span></h3>
+          <p class="tag">Mindustry-inspired math factory.</p>
+          <p class="desc">Arithmetic operators become factory logistics. Route number tokens through belts and machines to solve expressions and homework problems.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://learndustry.onrender.com" target="_blank" rel="noopener">▶ Play</a>
+            <a class="btn secondary" href="https://github.com/tassiost/learndustry" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🤖</div>
+          <h3>Prots / ScreepTest <span class="pill live">live</span></h3>
+          <p class="tag">Screeps-like RTS controlled by language.</p>
+          <p class="desc">Players write natural-language strategy directives; bots execute them in a multiplayer world. Strategy specification, debugging intent vs. behavior, and competitive systems thinking.</p>
+          <div class="actions">
+            <a class="btn primary" href="https://prots.onrender.com" target="_blank" rel="noopener">▶ Play</a>
+            <a class="btn secondary" href="https://github.com/tassiost/ScreepTest" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="infra">
+        <strong>Behind the scenes:</strong> a shared <a href="https://gemini-gateway-iqok.onrender.com/health" target="_blank" rel="noopener">Gemini Gateway</a> proxies LLM calls so static games never carry provider keys. Tank Strategy runs as a separate <a href="https://tank-strategy.onrender.com/health" target="_blank" rel="noopener">LLM proxy</a> for the WebGL tank arena.
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Coming soon</h2>
+      <p class="lede">In progress; not playable as a hosted link yet.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🎯</div>
+          <h3>Tank LLM Arena <span class="pill soon">webgl pending</span></h3>
+          <p class="tag">1–4 player tank arena, briefed in English.</p>
+          <p class="desc">Players brief tanks in one English sentence and an LLM compiles that into a validated strategy. Photon Fusion 2 multiplayer; Unity 6 WebGL build still being published. The strategy proxy is already live.</p>
+          <div class="actions">
+            <a class="btn secondary" href="https://github.com/tassiost/tank-llm-arena" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧱</div>
+          <h3>MeshGen <span class="pill soon">unity prototype</span></h3>
+          <p class="tag">Plain text becomes 3D scenes.</p>
+          <p class="desc">Unity runtime where text prompts generate interactive 3D scenes — including toy-block structures and homework-based build-to-answer lessons. Spatial reasoning through generation.</p>
+          <div class="actions">
+            <a class="btn secondary" href="https://github.com/tassiost/MeshGen" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🔤</div>
+          <h3>Vocab / Lexi-Shift <span class="pill soon">backend pending</span></h3>
+          <p class="tag">Generated vocabulary game.</p>
+          <p class="desc">Unity vocabulary game with a Python generation pipeline for words, images, TTS, and runtime level plans. Backend hosting being decided between Hugging Face Spaces and Render.</p>
+          <div class="actions">
+            <a class="btn secondary" href="https://github.com/tassiost/Vocab" target="_blank" rel="noopener">&lt;&gt; Code</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Built by <a href="https://github.com/tassiost" target="_blank" rel="noopener">@tassiost</a>. Most projects use Gemini behind a shared gateway. Free-tier hosted on Render — first visit may cold-start.</p>
+    </div>
+  </footer>
+</body>
+</html>
